@@ -1,6 +1,7 @@
 """ This is a program to break the caesar code """
 
 import string
+from Script import french_dictionary
 from Script import caesar_encryption
 
 
@@ -34,33 +35,25 @@ def break_caesar(text: str):
     return number_byte
 
 
-def list_words():
-    with open("./Script/1500_words_used_in_french", "r") as f:
-        lines = f.read().splitlines()
-    return lines
-
-
 def brute_force(text: str):
     """
-    Function to attack the encrypted message by brute force and compare with the 1500 most used words in the French
-    language
+    Function to attack the encrypted message by brute force and compare with a dictionary of French words
     :param text: Encrypted text to attack
     :return: All possibility clues between 1 and 26, with sentence and index
     """
     dictionary_text: dict = {}
-    list_1500_words: list = list_words()
+
     for key in range(1, 26):
         nb_check: int = 0
         text_decryption: str = caesar_encryption.encryption_decryption(text, key, "decryption")
         text_decryption_list: list = text_decryption.split(" ")
 
         for words in range(len(text_decryption_list)):
-            if text_decryption_list[words] in list_1500_words:
+            if text_decryption_list[words] in french_dictionary.dictionary:
                 nb_check = nb_check + 1
 
         text_key: str = text_decryption + " -> " + str(key)
         text_value: str = str(nb_check)
-
         dictionary_text[text_key] = text_value
 
     dictionary_text_sort: dict = dict(sorted(dictionary_text.items(), key=lambda x: x[1], reverse=True))
