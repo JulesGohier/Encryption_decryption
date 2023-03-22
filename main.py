@@ -1,3 +1,4 @@
+""" Main program composed of all the functions of the script file """
 from script import initialization
 from script import delimiter
 from script import caesar_encryption as cae_encryp
