@@ -151,3 +151,16 @@ def creation_dictionary_json(dict_lowerCase_uppercase: dict):
     return file_name
 
 
+def open_json_dictionary(file_name: str):
+    with open("./Messages_to_encrypt/" + file_name + ".json", "r") as dictionary:
+        dict_lowercase: dict = json.load(dictionary)
+
+    return dict_lowercase
+
+
+def reverse_json_dictionary(dict_original: dict):
+    dict_reverse: dict = {}
+    for key, value in dict_original.items():
+        dict_reverse[value] = key
+
+    return dict_reverse

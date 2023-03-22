@@ -2,24 +2,18 @@
 
 import string
 
-
-def encryption_decryption(text: str, index: int, mode: str):
+def encryption_decryption(text: str, index: int):
     """
     Function to encrypt or decrypt by caesar method
     :param text: Text to encrypt or decrypt
     :param index: Number of decals in alphabet
-    :param mode: Choose between encrypt or decrypt
     :return: Encrypted or decrypted text
     """
     new_text: str = ""
-    nb_octet: int = 0
 
     for letter in text:
 
-        if mode == "encryption":
-            nb_octet = ord(letter) + index
-        if mode == "decryption":
-            nb_octet = ord(letter) - index
+        nb_octet: int = ord(letter) + index
 
         if letter in string.ascii_lowercase:
             while nb_octet > 122:
@@ -40,4 +34,3 @@ def encryption_decryption(text: str, index: int, mode: str):
             new_text = new_text + letter
 
     return new_text
-

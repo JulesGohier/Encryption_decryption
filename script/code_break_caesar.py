@@ -1,8 +1,8 @@
 """ This is a program to break the caesar code """
 
 import string
-from Script import french_dictionary
-from Script import caesar_encryption
+from script import french_dictionary
+from script import caesar_encryption
 
 
 def break_caesar(text: str):
@@ -42,10 +42,10 @@ def brute_force(text: str):
     :return: All possibility clues between 1 and 26, with sentence and index
     """
     dictionary_text: dict = {}
-
     for key in range(1, 26):
         nb_check: int = 0
-        text_decryption: str = caesar_encryption.encryption_decryption(text, key, "decryption")
+
+        text_decryption: str = caesar_encryption.encryption_decryption(text, -key)
         text_decryption_list: list = text_decryption.split(" ")
 
         for words in range(len(text_decryption_list)):
@@ -54,9 +54,11 @@ def brute_force(text: str):
 
         text_key: str = text_decryption + " -> " + str(key)
         text_value: str = str(nb_check)
+        print(nb_check)
         dictionary_text[text_key] = text_value
 
     dictionary_text_sort: dict = dict(sorted(dictionary_text.items(), key=lambda x: x[1], reverse=True))
+    print(dictionary_text_sort)
     text_output: list = list(dictionary_text_sort)
 
     return text_output[0]

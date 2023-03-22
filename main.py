@@ -1,8 +1,8 @@
-from Script import initialization
-from Script import delimiter
-from Script import caesar_encryption as cae_encryp
-from Script import dictionary_encryption as dic_encryp
-from Script import code_break_caesar
+from script import initialization
+from script import delimiter
+from script import caesar_encryption as cae_encryp
+from script import dictionary_encryption as dic_encryp
+from script import code_break_caesar
 
 if __name__ == '__main__':
     delimiter.initialization()
@@ -17,7 +17,7 @@ if __name__ == '__main__':
             delimiter.encryption()
             index: int = initialization.input_integer("Enter the offset index : ")
             delimiter.encryption()
-            text_encryption: str = cae_encryp.encryption_decryption(text, index, "encryption")
+            text_encryption: str = cae_encryp.encryption_decryption(text, index)
             initialization.choice_output(text_encryption)
 
         elif choice_encryption == "D":
@@ -26,12 +26,12 @@ if __name__ == '__main__':
 
             if choice_decryption == "F":
                 index: int = code_break_caesar.break_caesar(text)
-                text_decryption: str = cae_encryp.encryption_decryption(text, index, "encryption")
+                text_decryption: str = cae_encryp.encryption_decryption(text, index)
                 initialization.choice_output(text_decryption)
 
             elif choice_decryption == "K":
                 key: int = initialization.input_integer("Enter the decryption key : ")
-                text_decryption: str = cae_encryp.encryption_decryption(text, key, "decryption")
+                text_decryption: str = cae_encryp.encryption_decryption(text, -key)
                 initialization.choice_output(text_decryption)
 
             elif choice_decryption == "B":
@@ -43,17 +43,20 @@ if __name__ == '__main__':
         text: str = initialization.input_choice()
         choice_encryption: str = initialization.choice_encryption_decryption()
 
-        if choice_encryption == "C":
+        if choice_encryption == "E":
             delimiter.encryption()
             dict_lowerCase_uppercase: dict = {}
             file_name: str = initialization.creation_dictionary_json(dict_lowerCase_uppercase)
-            text_encryption = dic_encryp.encryption_decryption(file_name, text, "encryption")
+            dict_lowerCase_uppercase = initialization.open_json_dictionary(file_name)
+            text_encryption = dic_encryp.encryption_decryption(text, dict_lowerCase_uppercase)
             initialization.choice_output(text_encryption)
 
         elif choice_encryption == "D":
             delimiter.decryption()
             file_name: str = initialization.input_character_string("Enter the name of the json dictionary : ")
-            text_decryption = dic_encryp.encryption_decryption(file_name, text, "decryption")
+            dict_lowerCase_uppercase: dict = initialization.open_json_dictionary(file_name)
+            dict_lowerCase_uppercase_reverse: dict = initialization.reverse_json_dictionary(dict_lowerCase_uppercase)
+            text_decryption = dic_encryp.encryption_decryption(text, dict_lowerCase_uppercase_reverse)
             initialization.choice_output(text_decryption)
 
     delimiter.end()
