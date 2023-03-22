@@ -89,7 +89,7 @@ def choice_output(text: str):
         print(text)
 
 
-def choice_method():
+def choice_method() -> str:
     """
     Function to select the encryption method
     :return: Returns the choice C for Caesar encryption and D for dictionary
@@ -101,7 +101,7 @@ def choice_method():
     return choice
 
 
-def choice_encryption_decryption():
+def choice_encryption_decryption() -> str:
     """
     Function to select if you want to encrypt or decrypt
     :return: Returns the choice E for encrypt and D for decrypt

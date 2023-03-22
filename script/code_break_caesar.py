@@ -58,14 +58,13 @@ def brute_force(text: str):
             if text_decryption_list[words] in french_dictionary.dictionary:
                 nb_check = nb_check + 1
 
-        text_key: str = text_decryption + " -> " + str(key)
+        text_key: str = text_decryption + " -> " + str(key) + " or " + str(-key)
         text_value: str = str(nb_check)
         dictionary_text[text_key] = text_value
 
     dictionary_text_sort: dict = dict(
         sorted(dictionary_text.items(), key=lambda x: x[1], reverse=True)
     )
-    print(dictionary_text_sort)
     text_output: list = list(dictionary_text_sort)
 
     return text_output[0]

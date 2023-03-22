@@ -28,13 +28,12 @@ def encryption_decryption(text: str, index: int):
     Function to encrypt or decrypt by caesar method
     :param text: Text to encrypt or decrypt
     :param index: Number of decals in alphabet
-    :return: Encrypted or decrypted text
+    :return: Encrypted or decrypted textb
     """
     new_text: str = ""
 
     for letter in text:
         nb_octet: int = ord(letter) + index
-        character: str = ""
         if letter in string.ascii_lowercase:
             while nb_octet > 122:
                 nb_octet = (nb_octet - 122) + 96
